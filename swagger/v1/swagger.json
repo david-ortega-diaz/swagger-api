@@ -1,0 +1,203 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/posts/{id}/comments": {
+      "post": {
+        "summary": "Create a comment",
+        "tags": [
+          "Comments"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "post",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "commenter": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "text"
+                },
+                "post_id": {
+                  "type": "integer"
+                },
+                "index_comments_on_post_id": {
+                  "type": "index"
+                }
+              },
+              "required": [
+                "commenter",
+                "body",
+                "post_id",
+                "index_comments_on_post_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "post created"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      }
+    },
+    "/api/v1/posts/{id}/comments/{id}": {
+      "get": {
+        "summary": "Retrieves a comment",
+        "tags": [
+          "Comments"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "commenter found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "post_id": {
+                  "type": "integer"
+                },
+                "commenter": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "text"
+                },
+                "index_comments_on_post_id": {
+                  "type": "index"
+                }
+              },
+              "required": [
+                "commenter",
+                "body",
+                "index_comments_on_post_id"
+              ]
+            }
+          },
+          "404": {
+            "description": "pet not found"
+          }
+        }
+      }
+    },
+    "/api/v1/posts": {
+      "post": {
+        "summary": "Creates a post",
+        "tags": [
+          "Posts"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "post",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "text"
+                },
+                "author": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "text",
+                "author"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "post created"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      }
+    },
+    "/api/v1/posts/{id}": {
+      "get": {
+        "summary": "Retrieves a post",
+        "tags": [
+          "Posts"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "title": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "title found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "text"
+                },
+                "author": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title",
+                "text",
+                "author"
+              ]
+            }
+          },
+          "404": {
+            "description": "pet not found"
+          }
+        }
+      }
+    }
+  }
+}
