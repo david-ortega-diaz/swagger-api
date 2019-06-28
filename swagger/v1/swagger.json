@@ -54,7 +54,7 @@
         }
       }
     },
-    "/api/v1/posts/{id}/comments/{id}": {
+    "/api/v1/posts/{id}/comments/{id_comment}": {
       "get": {
         "summary": "Retrieves a comment",
         "tags": [
@@ -66,7 +66,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "id_comment",
             "in": "path",
             "type": "integer",
             "required": true
@@ -89,13 +89,14 @@
                 }
               },
               "required": [
+                "post_id",
                 "commenter",
                 "body"
               ]
             }
           },
           "404": {
-            "description": "pet not found"
+            "description": "comment not found"
           }
         }
       }
@@ -187,7 +188,7 @@
             }
           },
           "404": {
-            "description": "pet not found"
+            "description": "post not found"
           }
         }
       }

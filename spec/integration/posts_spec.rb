@@ -1,4 +1,4 @@
-# spec/integration/pets_spec.rb
+# spec/integration/posts_spec.rb
 require 'swagger_helper'
 
 describe 'Posts API' do

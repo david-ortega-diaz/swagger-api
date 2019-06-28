@@ -1,4 +1,4 @@
-# spec/integration/pets_spec.rb
+# spec/integration/comments_spec.rb
 require 'swagger_helper'
 
 describe 'Comments API' do
@@ -31,12 +31,12 @@ describe 'Comments API' do
     end
   end
 
-  path '/api/v1/posts/{id}/comments/{id}' do
+  path '/api/v1/posts/{id}/comments/{id_comment}' do
 
     get 'Retrieves a comment' do
       tags 'Comments'
       produces 'application/json', 'application/xml'
-      parameter name: :id, :in => :path, :type => :integer
+      parameter name: :id_comment, :in => :path, :type => :integer
 
       response '200', 'comment found' do
         schema type: :object,
@@ -45,9 +45,9 @@ describe 'Comments API' do
             commenter: { type: :string },
             body: { type: :text }
           },
-          required: [ 'commenter', 'body']
+          required: [ 'post_id', 'commenter', 'body']
 
-        let(:comment) { Post.create(commenter: 'foo', body: 'bar').id }
+        let(:comment) { Comment.create(commenter: 'foo', body: 'bar').id }
         run_test!
       end
 

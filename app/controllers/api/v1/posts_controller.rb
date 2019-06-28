@@ -54,7 +54,6 @@ module Api
         # Only allow a trusted parameter "white list" through.
         def post_params
           params.fetch(:post).permit(:title, :text, :author)
-          # .permit(:name, :status, :photo_url)
         end
       end
     end
