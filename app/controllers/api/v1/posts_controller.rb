@@ -6,8 +6,7 @@ module Api
       # GET /api/v1/posts
       def index
         @posts = Post.all
-
-        render json: @posts
+        render json: @posts.to_json(only: [:title])
       end
 
       # GET /api/v1/posts/1

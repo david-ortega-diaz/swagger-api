@@ -3,6 +3,29 @@ require 'swagger_helper'
 
 describe 'Posts API' do
 
+  path '/api/v1/posts/' do
+
+    get 'Retrieves all posts' do
+      tags 'Posts'
+      produces 'application/json', 'application/xml'
+      response '200', 'posts found' do
+        schema type: :object,
+          properties: {
+            title: { type: :string },
+          },
+          required: [ 'title' ]
+
+        let(:title) { Post.create(title: 'foo').id }
+        run_test!
+      end
+
+      response '404', 'post not found' do
+        let(:title) { 'invalid' }
+        run_test!
+      end
+    end
+  end
+  
   path '/api/v1/posts' do
 
     post 'Creates a post' do

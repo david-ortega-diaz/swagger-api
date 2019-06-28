@@ -101,6 +101,37 @@
         }
       }
     },
+    "/api/v1/posts/": {
+      "get": {
+        "summary": "Retrieves all posts",
+        "tags": [
+          "Posts"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "posts found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title"
+              ]
+            }
+          },
+          "404": {
+            "description": "post not found"
+          }
+        }
+      }
+    },
     "/api/v1/posts": {
       "post": {
         "summary": "Creates a post",
