@@ -36,24 +36,23 @@ describe 'Comments API' do
     get 'Retrieves a comment' do
       tags 'Comments'
       produces 'application/json', 'application/xml'
-      parameter name: :id, :in => :path, :type => :string
+      parameter name: :id, :in => :path, :type => :integer
 
-      response '200', 'commenter found' do
+      response '200', 'comment found' do
         schema type: :object,
           properties: {
-            post_id: { type: :integer, },
+            post_id: { type: :integer},
             commenter: { type: :string },
-            body: { type: :text },
-            index_comments_on_post_id: { type: :index}
+            body: { type: :text }
           },
-          required: [ 'commenter', 'body', 'index_comments_on_post_id' ]
+          required: [ 'commenter', 'body']
 
-        let(:post_id) { Post.create(commenter: 'foo', body: 'bar', index_comments_on_post_id: 8).id }
+        let(:comment) { Post.create(commenter: 'foo', body: 'bar').id }
         run_test!
       end
 
-      response '404', 'pet not found' do
-        let(:post_id) { 'invalid' }
+      response '404', 'comment not found' do
+        let(:comment) { 'invalid' }
         run_test!
       end
     end

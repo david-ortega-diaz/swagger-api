@@ -35,24 +35,23 @@ describe 'Posts API' do
     get 'Retrieves a post' do
       tags 'Posts'
       produces 'application/json', 'application/xml'
-      parameter title: :id, :in => :path, :type => :string
+      parameter name: :id, :in => :path, :type => :integer
 
-      response '200', 'title found' do
+      response '200', 'post found' do
         schema type: :object,
           properties: {
-            id: { type: :integer, },
             title: { type: :string },
             text: { type: :text },
             author: { type: :string }
           },
           required: [ 'title', 'text', 'author' ]
 
-        let(:id) { Post.create(title: 'foo', text: 'bar', author: 'Gabo').id }
+        let(:post) { Post.create(title: 'foo', text: 'bar', author: 'Gabo').id }
         run_test!
       end
 
-      response '404', 'pet not found' do
-        let(:id) { 'invalid' }
+      response '404', 'post not found' do
+        let(:post) { 'invalid' }
         run_test!
       end
     end

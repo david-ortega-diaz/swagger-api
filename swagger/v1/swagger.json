@@ -68,13 +68,13 @@
           {
             "name": "id",
             "in": "path",
-            "type": "string",
+            "type": "integer",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "commenter found",
+            "description": "comment found",
             "schema": {
               "type": "object",
               "properties": {
@@ -86,15 +86,11 @@
                 },
                 "body": {
                   "type": "text"
-                },
-                "index_comments_on_post_id": {
-                  "type": "index"
                 }
               },
               "required": [
                 "commenter",
-                "body",
-                "index_comments_on_post_id"
+                "body"
               ]
             }
           },
@@ -161,21 +157,18 @@
         ],
         "parameters": [
           {
-            "title": "id",
+            "name": "id",
             "in": "path",
-            "type": "string",
+            "type": "integer",
             "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "title found",
+            "description": "post found",
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
-                  "type": "integer"
-                },
                 "title": {
                   "type": "string"
                 },

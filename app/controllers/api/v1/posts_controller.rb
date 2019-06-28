@@ -13,7 +13,7 @@ module Api
       # GET /api/v1/posts/1
       def show
         if @post
-          render json: @post.to_json(only: [:id, :name, :status, :photo_url])
+          render json: @post.to_json(only: [:id, :title, :text, :author])
         else
           render json: {}, status: :not_found
         end
