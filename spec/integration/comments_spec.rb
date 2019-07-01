@@ -47,12 +47,12 @@ describe 'Comments API' do
           },
           required: [ 'post_id', 'commenter', 'body']
 
-        let(:comment) { Comment.create(commenter: 'foo', body: 'bar').id }
+        let(:id) { Comment.create(commenter: 'foo', body: 'bar').id }
         run_test!
       end
 
       response '404', 'comment not found' do
-        let(:comment) { 'invalid' }
+        let(:id) { 'invalid' }
         run_test!
       end
     end

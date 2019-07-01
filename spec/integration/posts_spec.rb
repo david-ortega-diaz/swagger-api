@@ -15,7 +15,7 @@ describe 'Posts API' do
           },
           required: [ 'title' ]
 
-        let(:title) { Post.create(title: 'foo').id }
+        let(:id) { Post.create(title: 'foo').id }
         run_test!
       end
 
